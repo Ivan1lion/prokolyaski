@@ -574,7 +574,9 @@ async def _run_ai_task(vk_api, peer_id, vk_id, user_text, is_catalog, user, sm):
                 shop_url=final_shop_url, products_context=products_context)
 
             answer = await ask_responses_api(
-                user_message=user_text, system_instruction=system_prompt)
+                user_message=user_text, system_instruction=system_prompt,
+                use_google_search=not bool(products_context),
+                allow_fallback=bool(products_context) or not is_catalog)
 
             # Футеры + снятие флагов
             if is_catalog and user_cached.first_catalog_request:

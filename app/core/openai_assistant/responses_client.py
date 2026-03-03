@@ -178,7 +178,7 @@ def clean_markdown_artifacts(text: str) -> str:
 # 🧠 ОСНОВНАЯ ФУНКЦИЯ ЗАПРОСА
 # ==========================================
 
-async def ask_responses_api(user_message: str, system_instruction: str) -> str:
+async def ask_responses_api(user_message: str, system_instruction: str, use_google_search: bool = True, allow_fallback: bool = True) -> str:
     """
     Отправляет запрос к AI.
     Приоритет: Google Gemini 3 Pro -> Fallback: OpenAI.
@@ -192,7 +192,7 @@ async def ask_responses_api(user_message: str, system_instruction: str) -> str:
     try:
         # 🔥 Принт для понимания
         print(f"🔔 ПОПЫТКА 1: Google Gemini 3 Pro (Основной)")
-        tools_config = [types.Tool(google_search=types.GoogleSearch())]
+        tools_config = [types.Tool(google_search=types.GoogleSearch())] if use_google_search else []
 
         generate_config = types.GenerateContentConfig(
             temperature=1.0,
@@ -217,27 +217,28 @@ async def ask_responses_api(user_message: str, system_instruction: str) -> str:
         else:
             raise ValueError("Gemini вернул пустой ответ")
 
+
     except Exception as e:
-        logger.error(f"⚠️ Ошибка Gemini: {e}. Переключаюсь на резерв...", exc_info=True)
+        logger.warning(f"⚠️ Ошибка Gemini: {type(e).__name__}: {e}. Переключаюсь на резерв...")
+        # Если fallback запрещён (глобальный поиск без фида) — GPT не поможет
+        if not allow_fallback:
+            logger.warning("⚠️ GPT-fallback отключён для этого запроса (нет товаров из базы)")
+            return "⚠️ Сервис временно недоступен. Попробуйте повторить запрос через пару минут."
 
         # ---------------------------------------------------------
         # ПОПЫТКА 2: OpenAI ChatGPT (Резерв)
         # ---------------------------------------------------------
+
         try:
             # 🔥 Принт для понимания
             print(f"🔔 ПОПЫТКА 2: OpenAI ChatGPT (Резерв))")
-            messages = [
-                {"role": "system", "content": system_instruction},
-                {"role": "user", "content": user_message}
-            ]
 
-            response = await openai_client.chat.completions.create(
-                model="gpt-5.2",
-                messages=messages,
-                reasoning={"effort": "high"},
-                timeout=60.0  # Таймаут 60 секунд
+            response = await openai_client.responses.create(
+                model="gpt-5.1",
+                instructions=system_instruction,
+                input=user_message,
             )
-            raw_answer = response.choices[0].message.content or ""
+            raw_answer = response.output_text or ""
 
         except Exception as ex:
             logger.critical(f"❌ CRITICAL: Все API упали: {ex}", exc_info=True)

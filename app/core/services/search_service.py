@@ -19,7 +19,7 @@ logger = logging.getLogger(__name__)
 # .parent -> app/services
 # .parent.parent -> app
 # .parent.parent.parent -> корень проекта (где лежит папка chromadb_storage)
-BASE_DIR = Path(__file__).resolve().parent.parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent.parent
 CHROMA_DB_PATH = os.path.join(BASE_DIR, "chromadb_storage")
 
 # Инициализация OpenAI

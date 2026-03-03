@@ -367,7 +367,9 @@ async def _run_auto_request_task(
 
             answer = await ask_responses_api(
                 user_message="Подбери мне подходящую коляску",
-                system_instruction=system_prompt
+                system_instruction=system_prompt,
+                use_google_search=not bool(products_context),
+                allow_fallback=bool(products_context) or not is_catalog_mode,
             )
 
             # --- ФУТЕР ---
@@ -580,7 +582,9 @@ async def _run_ai_message_task(
 
             answer = await ask_responses_api(
                 user_message=user_text,
-                system_instruction=system_prompt
+                system_instruction=system_prompt,
+                use_google_search=not bool(products_context),
+                allow_fallback=bool(products_context) or not is_catalog_mode
             )
 
             # --- ФУТЕРЫ ---

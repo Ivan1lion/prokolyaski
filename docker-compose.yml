@@ -4,7 +4,7 @@ services:
   # 1. Telegram-бот + веб-сервер (webhook + лендинг)
   bot_telegram:
     build: .
-    container_name: babykea_telegram
+    container_name: prokolyaski_telegram
     restart: always
     ports:
       - "8000:8000"
@@ -27,7 +27,7 @@ services:
   # 2. VK-бот (будет активирован позже)
   # bot_vk:
   #   build: .
-  #   container_name: babykea_vk
+  #   container_name: prokolyaski_vk
   #   restart: always
   #   command: python run_vk.py
   #   env_file:
@@ -47,7 +47,7 @@ services:
   # 3. База данных PostgreSQL
   db:
     image: postgres:15-alpine
-    container_name: babykea_postgres
+    container_name: prokolyaski_postgres
     restart: always
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
@@ -63,7 +63,7 @@ services:
   # 4. Redis (Кэш и FSM)
   redis:
     image: redis:7.2-alpine
-    container_name: babykea_redis
+    container_name: prokolyaski_redis
     restart: always
     command: >
       --requirepass ${REDIS_PASSWORD}
@@ -80,7 +80,7 @@ services:
   # 5. Metabase (Аналитика)
   metabase:
     image: metabase/metabase:latest
-    container_name: babykea_metabase
+    container_name: prokolyaski_metabase
     restart: always
     ports:
       - "3000:3000"
