@@ -826,7 +826,7 @@ async def process_payment(
             await callback.message.answer("❌ Ошибка создания сессии оплаты.")
             return
 
-        webhook_host = os.getenv("WEBHOOK_HOST", "https://bot.babykea.ru")
+        webhook_host = os.getenv("WEBHOOK_HOST", "https://bot.prokolyaski.ru")
         checkout_url = f"{webhook_host}/checkout/{ps.token}"
 
         await callback.message.answer(

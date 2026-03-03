@@ -5,7 +5,7 @@ from pathlib import Path
 # === НАСТРОЙКИ ПУТЕЙ ===
 # 1. resolve() -> полный путь к файлу manage_chroma.py
 # 2. .parent   -> папка app
-# 3. .parent   -> папка Babykea_Bot(alpha) (КОРЕНЬ, где лежит chromadb_storage)
+# 3. .parent   -> папка PROkolyaski (КОРЕНЬ, где лежит chromadb_storage)
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 CHROMA_DB_PATH = os.path.join(BASE_DIR, "chromadb_storage")

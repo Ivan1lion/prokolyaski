@@ -1,9 +1,9 @@
 # ============================================================
-# Babykea Bot — Production Caddyfile
+# prokolyaski Bot — Production Caddyfile
 # ============================================================
 #
 # Архитектура:
-#   bot.babykea.ru → Telegram-бот (порт 8000) + VK-бот (порт 8001)
+#   bot.prokolyaski.ru → Telegram-бот (порт 8000) + VK-бот (порт 8001)
 #
 # Маршрутизация:
 #   /vk/callback        → VK-бот (8001) — Callback API от VK
@@ -18,10 +18,10 @@
 #
 # ============================================================
 
-bot.babykea.ru {
+bot.prokolyaski.ru {
     # --- Логирование ---
     log {
-        output file /var/log/caddy/babykea-bot.log {
+        output file /var/log/caddy/prokolyaski-bot.log {
             roll_size 10mb
             roll_keep 5
         }

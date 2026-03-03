@@ -18,7 +18,7 @@ from app.core.services.pay_config import PAYMENTS
 
 logger = logging.getLogger(__name__)
 
-WEBHOOK_HOST = os.getenv("WEBHOOK_HOST", "https://bot.babykea.ru")
+WEBHOOK_HOST = os.getenv("WEBHOOK_HOST", "https://bot.prokolyaski.ru")
 
 
 async def checkout_page(request: web.Request) -> web.Response:
