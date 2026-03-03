@@ -59,6 +59,8 @@ WEBHOOK_HOST = os.getenv("WEBHOOK_HOST")
 MY_USERNAME = os.getenv("MASTER_USERNAME")
 VK_START_POST = os.getenv("VK_START_POST")
 VK_GUIDE_POST = os.getenv("VK_GUIDE_POST")
+VK_MANUAL_POST = os.getenv("VK_MANUAL_POST")
+VK_RULES_POST = os.getenv("VK_RULES_POST")
 
 
 # ID магазинов для ПЛАТНЫХ пользователей (тот же список что в TG)
@@ -665,24 +667,20 @@ async def _handle_guide(vk_id, peer_id, user, session, vk_api):
 
 async def _handle_rules(vk_id, peer_id, user, session, vk_api):
     """Аналог /rules."""
-    text = (
-        "💢 Как НЕ сломать коляску — видео:\n\n"
-        "YouTube — https://www.youtube.com/\n"
-        "RUTUBE — https://rutube.ru/\n"
-        "VK Видео — https://vkvideo.ru/"
-    )
-    await _send(vk_api, peer_id, text)
+    await _send(vk_api, peer_id,
+                "",  # Пустая строка, так как текст нам не нужен
+                attachment=VK_RULES_POST,
+                )
 
 
 async def _handle_manual(vk_id, peer_id, user, session, vk_api):
     """Аналог /manual."""
-    text = (
-        "✅ Как продлить жизнь коляске — видео:\n\n"
-        "YouTube — https://www.youtube.com/\n"
-        "RUTUBE — https://rutube.ru/\n"
-        "VK Видео — https://vkvideo.ru/"
-    )
-    await _send(vk_api, peer_id, text, keyboard=vk_kb.next_service_kb())
+    await _send(vk_api,
+                peer_id,
+                "",  # Пустая строка, так как текст нам не нужен
+                attachment=VK_MANUAL_POST,
+                keyboard=vk_kb.next_service_kb()
+                )
 
 
 async def _handle_pamyatka(vk_id, peer_id, vk_api):
