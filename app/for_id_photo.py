@@ -8,7 +8,7 @@ from dotenv import find_dotenv, load_dotenv
 load_dotenv(find_dotenv())
 
 API_TOKEN = os.getenv("TOKEN")
-# 🔥 Берем из env, чтобы было единообразно с основным ботом
+# 🔥 Берем из env, чтобы было единообразно с основным ботоМ
 TECH_CHANNEL_ID = int(os.getenv("TECH_CHANNEL_ID") )
 
 # Небольшая защита от дурака
