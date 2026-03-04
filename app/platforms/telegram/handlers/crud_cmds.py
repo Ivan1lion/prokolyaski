@@ -8,6 +8,7 @@ from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.db.models import User, Magazine
+from app.core.quiz.photo_ids import TG_UPLOADED_PHOTOS
 import app.platforms.telegram.keyboards as kb
 from app.platforms.telegram.handlers.states import MenuStates
 from app.platforms.telegram.handlers.email_for_menu import update_user_email
@@ -130,8 +131,8 @@ async def promo_cmd(message: Message, session: AsyncSession):
         return
 
     # Настройки
-    bot_link = "https://t.me/babykea_bot"
-    photo_id = "AgACAgIAAyEGAATQjmD4AANnaY3ziPd3A8eUTwbZqo6-aqCuxmYAAmQaaxs1a3FI56_9NYQIxA0BAAMCAAN5AAM6BA"
+    bot_link = "https://t.me/prokolyaski_bot"
+    photo_id = TG_UPLOADED_PHOTOS.get("for_pay.jpg")
 
     # VIP-клиент
     if mag_promo == "[BABYKEA_PREMIUM]":

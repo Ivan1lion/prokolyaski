@@ -23,6 +23,7 @@ from app.platforms.telegram.keyboards import payment_button_keyboard
 from app.core.db.crud import get_or_create_user, closed_menu
 from app.core.db.models import User, Magazine, Payment, UserQuizProfile
 from app.core.db.config import session_maker
+from app.core.quiz.photo_ids import TG_UPLOADED_PHOTOS
 from app.platforms.telegram.posting.resolver import resolve_channel_context
 from app.platforms.telegram.posting.state import is_new_post
 from app.platforms.telegram.posting.dispatcher import dispatch_post
@@ -56,6 +57,15 @@ class AIChat(StatesGroup):
 # ID магазинов, по которым ищем для ПЛАТНЫХ пользователей
 # 🔥🔥🔥🔥🔥🔥🔥🔥(Замени цифры на реальные ID твоих 5 крупных магазинов в БД)🔥🔥🔥🔥🔥🔥🔥🔥
 TOP_SHOPS_IDS = [2]
+
+
+# #Технический хендлер для определения id гифки
+# @for_user_router.message()
+# async def catch_animation(message: Message):
+#     if message.animation:
+#         await message.answer(
+#             f"file_id:\n<code>{message.animation.file_id}</code>"
+#         )
 
 
 # команд СТАРТ
@@ -130,7 +140,7 @@ async def activation(call: CallbackQuery):
     await call.message.edit_reply_markup(reply_markup=None)
 
     await call.message.answer_photo(
-        photo="AgACAgIAAyEGAATQjmD4AANnaY3ziPd3A8eUTwbZqo6-aqCuxmYAAmQaaxs1a3FI56_9NYQIxA0BAAMCAAN5AAM6BA",
+        photo=TG_UPLOADED_PHOTOS.get("for_pay.jpg"),
         caption="<b>Оплатите полный доступ ко всем разделам за 1900₽</b> "
         "\n<i>(В пакет также включены 50 бесплатных запросов к AI-консультанту)</i>"
         "\n\n<blockquote>🎫 <b>Есть флаер от магазина-партнера?</b>  — нажмите «Ввести код активации» для свободного "
@@ -891,13 +901,3 @@ async def channel_post_handler(message: Message, bot: Bot) -> None:
     )
 
 
-
-
-
-#Технический хендлер для определения id гифки
-# @for_user_router.message()
-# async def catch_animation(message: Message):
-#     if message.animation:
-#         await message.answer(
-#             f"file_id:\n<code>{message.animation.file_id}</code>"
-#         )

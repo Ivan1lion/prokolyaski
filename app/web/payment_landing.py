@@ -114,7 +114,7 @@ def _checkout_page_html(amount, description: str, token: str) -> str:
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Оплата — Babykea Bot</title>
+    <title>Оплата — ПРОколяски</title>
     <style>
         * {{ margin: 0; padding: 0; box-sizing: border-box; }}
         body {{
@@ -164,7 +164,7 @@ def _checkout_page_html(amount, description: str, token: str) -> str:
 <body>
     <div class="card">
         <div class="logo">👶🔧</div>
-        <h1>Babykea Bot</h1>
+        <h1>ПРОколяски</h1>
         <div class="description">{description}</div>
         <div class="amount">{amount} ₽</div>
         <form method="POST" action="/checkout/{token}">

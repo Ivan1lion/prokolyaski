@@ -8,6 +8,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.db.crud import closed_menu
 from app.core.db.models import User
+from app.core.quiz.photo_ids import TG_UPLOADED_PHOTOS
 
 
 standard_router = Router()
@@ -80,7 +81,7 @@ async def blog_cmd(message: Message, session: AsyncSession):
 
     # 4. Отправляем
     await message.answer_photo(
-        photo="AgACAgIAAyEGAATQjmD4AANuaZnp85G2dqnEAAEE7tjDMTHOaparAALHGWsbAbrRSEMyKwp3hwQVAQADAgADdwADOgQ"
+        photo=TG_UPLOADED_PHOTOS.get("for_blog.jpg")
     )
     await message.answer(
         text=blog_text,

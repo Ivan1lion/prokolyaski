@@ -141,8 +141,8 @@ async def activate_premium_subscription(session: AsyncSession, telegram_id: int,
         .where(User.telegram_id == telegram_id)
         .values(
             requests_left=User.requests_left + count,
-            magazine_id=1,                 # Технический магазин
-            promo_code='BABYKEA_PREMIUM',  # Спец код
+            magazine_id=2,                 # Технический магазин
+            promo_code='[BABYKEA_PREMIUM]',  # Спец код
             closed_menu_flag=False,        # 🔥 Снимаем флаг (даем доступ к меню)
             first_catalog_request=False    # 🔥 Снимаем флаг для первого ответа по поиску (что бы не было промо в ответе)
         )

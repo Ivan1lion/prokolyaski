@@ -11,6 +11,7 @@ from aiogram.fsm.context import FSMContext
 from app.platforms.telegram.handlers.user_handlers import AIChat
 from app.core.db.models import Payment
 from app.core.db.crud import closed_menu
+from app.core.quiz.photo_ids import TG_UPLOADED_PHOTOS
 from app.core.redis_client import redis_client
 
 help_router = Router()
@@ -164,7 +165,7 @@ async def process_contact_master(callback: CallbackQuery, session: AsyncSession)
     # Отправляем сообщение с кнопкой-ссылкой
     # (Мы не можем просто перекинуть юзера, нужно дать ему кнопку для перехода)
     await callback.message.answer_photo(
-        photo="AgACAgIAAyEGAATQjmD4AANmaY3zgyO2OZEYDqhTgnTnvnU95ssAAmIaaxs1a3FIgRucNIuBL00BAAMCAAN5AAM6BA",
+        photo=TG_UPLOADED_PHOTOS.get("for_help_master.jpg"),
         caption="✅ <b>Пришлите мне короткое видео (5-10 сек) и опишите или проговорите в самом видео "
                 "суть Вашего вопроса</b>"
                 "\n\nЯ стараюсь ответить и помочь всем кто пишет мне в ЛС, но не всегда могу сделать это оперативно. Как "

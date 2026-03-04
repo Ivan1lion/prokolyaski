@@ -1,3 +1,6 @@
+from app.core.quiz.photo_ids import TG_UPLOADED_PHOTOS, VK_UPLOADED_PHOTOS
+
+
 QUIZ_CONFIG = {
 
     # =========================
@@ -5,8 +8,8 @@ QUIZ_CONFIG = {
     # =========================
     "root": {
         1: {
-            "photo": "AgACAgIAAyEGAATQjmD4AAMvaY3x9txJDGU92xxqUpE6fVmWLWAAAjAaaxs1a3FIdL4SDY-JOfEBAAMCAAN3AAM6BA",
-            "photo_vk": "photo-236264711_456239023",
+            "photo": TG_UPLOADED_PHOTOS.get("0.jpg"),
+            "photo_vk": VK_UPLOADED_PHOTOS.get("0.jpg"),
             "text": (
                 "Выберите верное утверждение:\n\n"
                 "<blockquote>1. Я в положении. Ищу коляску для новорожденного 🤰</blockquote>\n\n"
@@ -23,8 +26,8 @@ QUIZ_CONFIG = {
                 "pregnant": {
                     "button": "Я в положении",
                     "preview": {
-                        "photo": "AgACAgIAAyEGAATQjmD4AAMwaY3x9ytgovP1FhT2PkyhLaR3SzcAAjEaaxs1a3FIY5WBdMw_ZC4BAAMCAAN4AAM6BA",
-                        "photo_vk": "photo-236264711_456239024",
+                        "photo": TG_UPLOADED_PHOTOS.get("10.jpg"),
+                        "photo_vk": VK_UPLOADED_PHOTOS.get("10.jpg"),
                         "text": "<blockquote>Коляски для новорожденных детей. Обязательно с люлькой для малыша, а также со сидячим "
                                 "блоком и автолюлькой в зависимости от модели и комплектации</blockquote>",
                         "text_vk": "Коляски для новорожденных детей. Обязательно с люлькой для малыша, а также со сидячим "
@@ -36,8 +39,8 @@ QUIZ_CONFIG = {
                 "stroller_6_plus": {
                     "button": "Прогулочная коляска 6+",
                     "preview": {
-                        "photo": "AgACAgIAAyEGAATQjmD4AANBaY3yEN8yRGr1pw6Iif2GG6kzu_cAAkYaaxs1a3FIifXXHzgRtFwBAAMCAAN5AAM6BA",
-                        "photo_vk": "photo-236264711_456239025",
+                        "photo": TG_UPLOADED_PHOTOS.get("20.jpg"),
+                        "photo_vk": VK_UPLOADED_PHOTOS.get("20.jpg"),
                         "text": "<blockquote>Коляски для уже подросших детей, способных сидеть. Так называемые "
                                 "'прогулочные' коляски более лёгкие и компактные</blockquote>",
                         "text_vk": "Коляски для уже подросших детей, способных сидеть. Так называемые "
@@ -49,8 +52,8 @@ QUIZ_CONFIG = {
                 "service_only": {
                     "button": "Коляска уже есть",
                     "preview": {
-                        "photo": "AgACAgIAAyEGAATQjmD4AANiaY3zcXFihPhBRbPWDa8wqzkDxlUAAl0aaxs1a3FI4i0P_3fweB8BAAMCAAN3AAM6BA",
-                        "photo_vk": "photo-236264711_456239026",
+                        "photo": TG_UPLOADED_PHOTOS.get("30.jpg"),
+                        "photo_vk": VK_UPLOADED_PHOTOS.get("30.jpg"),
                         "text": "<blockquote>Купить коляску – полдела. Очень важен своевременный уход и знание особых "
                                 "нюансов эксплуатации для предотвращения критического износа коляски, а также "
                                 "безопасности вашего ребенка\n\n"
@@ -75,8 +78,8 @@ QUIZ_CONFIG = {
     # =========================
     "pregnant": {
         2: {
-            "photo": "AgACAgIAAyEGAATQjmD4AAMxaY3x-YpLJ9x7whlJqSrC-hyck9AAAjIaaxs1a3FITurutAMtoygBAAMCAAN5AAM6BA",
-            "photo_vk": "photo-236264711_456239027",
+            "photo": TG_UPLOADED_PHOTOS.get("110.jpg"),
+            "photo_vk": VK_UPLOADED_PHOTOS.get("110.jpg"),
             "text": "Сфера применения коляски\n\n"
                     "<blockquote>Выберите, для выполнения каких основных задач требуется коляска</blockquote>",
             "text_vk": "Сфера применения коляски\n\n"
@@ -85,8 +88,8 @@ QUIZ_CONFIG = {
                 "daily_walks": {
                     "button": "Для ежедневных прогулок",
                     "preview": {
-                        "photo": "AgACAgIAAyEGAATQjmD4AAMyaY3x-kSWHyMhTcRVXBIneuBrpIUAAjMaaxs1a3FI-hCh2jNPNd0BAAMCAAN5AAM6BA",
-                        "photo_vk": "photo-236264711_456239028",
+                        "photo": TG_UPLOADED_PHOTOS.get("111.jpg"),
+                        "photo_vk": VK_UPLOADED_PHOTOS.get("111.jpg"),
                         "text": "<blockquote>Детские коляски для ежедневных прогулок возле дома или в парке</blockquote>",
                         "text_vk": "Детские коляски для ежедневных прогулок возле дома или в парке",
                     },
@@ -95,8 +98,8 @@ QUIZ_CONFIG = {
                 "autolady": {
                     "button": "Я автоледи",
                     "preview": {
-                        "photo": "AgACAgIAAyEGAATQjmD4AAMzaY3x_KKhQAUxilkjzFJJaMwKgBMAAjQaaxs1a3FI2oB2IJw2YI4BAAMCAAN3AAM6BA",
-                        "photo_vk": "photo-236264711_456239029",
+                        "photo": TG_UPLOADED_PHOTOS.get("112.png"),
+                        "photo_vk": VK_UPLOADED_PHOTOS.get("112.png"),
                         "text": "<blockquote>Коляски, которые более компактные, чтобы помещались в багажник автомобиля</blockquote>",
                         "text_vk": "Коляски, которые более компактные, чтобы помещались в багажник автомобиля",
                     },
@@ -105,8 +108,8 @@ QUIZ_CONFIG = {
                 "air_travel": {
                     "button": "Для путешествий",
                     "preview": {
-                        "photo": "AgACAgIAAyEGAATQjmD4AAM0aY3x_ZoDEiVg7wmsVcTINCHHmxMAAjUaaxs1a3FINk_VHpEC0bkBAAMCAAN5AAM6BA",
-                        "photo_vk": "photo-236264711_456239030",
+                        "photo": TG_UPLOADED_PHOTOS.get("113.jpg"),
+                        "photo_vk": VK_UPLOADED_PHOTOS.get("113.jpg"),
                         "text": "<blockquote>Как правило, это самые минималистичные и компактные коляски. Некоторые "
                                 "модели разрешено проносить в качестве ручной клади на борт самолётов. Такие коляски "
                                 "не отличаются высокой проходимостью и предназначены исключительно для ровных "
@@ -123,8 +126,8 @@ QUIZ_CONFIG = {
             "next_level": 3
         },
         3: {
-            "photo": "AgACAgIAAyEGAATQjmD4AAM1aY3x_2Wdbs466FjLS3XiNXTubKQAAjYaaxs1a3FIaq52Pae7gDABAAMCAAN5AAM6BA",
-            "photo_vk": "photo-236264711_456239031",
+            "photo": TG_UPLOADED_PHOTOS.get("120.jpg"),
+            "photo_vk": VK_UPLOADED_PHOTOS.get("120.jpg"),
             "text": "Коляска для зимы или для лета?\n\n"
                     "<blockquote>При выборе коляски нужно учитывать, на какое время года выпадают первые 6 месяцев "
                     "жизни ребёнка. От этого зависит тип и размер люльки, а также проходимость шасси</blockquote>",
@@ -135,8 +138,8 @@ QUIZ_CONFIG = {
                 "summer": {
                     "button": "Тёплое время года",
                     "preview": {
-                        "photo": "AgACAgIAAyEGAATQjmD4AAM2aY3yAWqPeseKiRln1PGIU-C9Nm8AAjcaaxs1a3FIek_4iERds5gBAAMCAAN5AAM6BA",
-                        "photo_vk": "photo-236264711_456239032",
+                        "photo": TG_UPLOADED_PHOTOS.get("121.jpg"),
+                        "photo_vk": VK_UPLOADED_PHOTOS.get("121.jpg"),
                         "text": "<blockquote>Для тёплого периода отлично подходят тканевые люльки (складные на распорках). Такие "
                                 "люльки мало весят, компактно складываются и хорошо дышат за счёт дополнительных "
                                 "секций для проветривания</blockquote>",
@@ -149,8 +152,8 @@ QUIZ_CONFIG = {
                 "winter": {
                     "button": "Холодное время года",
                     "preview": {
-                        "photo": "AgACAgIAAyEGAATQjmD4AAM3aY3yAhM0HyEJWb66mvXtYrt2UigAAjgaaxs1a3FIb1rvJJeCmCoBAAMCAAN5AAM6BA",
-                        "photo_vk": "photo-236264711_456239033",
+                        "photo": TG_UPLOADED_PHOTOS.get("122.jpg"),
+                        "photo_vk": VK_UPLOADED_PHOTOS.get("122.jpg"),
                         "text": "<blockquote>На холодный период рекомендуются люльки из пластика и термолюльки. Они отличаются "
                                 "большим размером и глубиной, чтобы подросшему крохе в тёплом конверте "
                                 "(зимней одежде) не было тесно</blockquote>",
@@ -164,8 +167,8 @@ QUIZ_CONFIG = {
             "next_level": 4
         },
         4: {
-            "photo": "AgACAgIAAyEGAATQjmD4AAM4aY3yA8DOTh8ldStWJcOVgZoPoj4AAjkaaxs1a3FIYaEHhQ0-e4wBAAMCAAN5AAM6BA",
-            "photo_vk": "photo-236264711_456239034",
+            "photo": TG_UPLOADED_PHOTOS.get("130.jpg"),
+            "photo_vk": VK_UPLOADED_PHOTOS.get("130.jpg"),
             "text": "Желаемый функционал\n\n"
                     "<blockquote>Выберете предпочтительный для вас фукционал коляски</blockquote>",
             "text_vk": "Желаемый функционал\n\n"
@@ -174,8 +177,8 @@ QUIZ_CONFIG = {
                 "2in1": {
                     "button": "2 в 1",
                     "preview": {
-                        "photo": "AgACAgIAAyEGAATQjmD4AAM5aY3yBc5jOruf7bvxM_cxTVUZQlUAAjoaaxs1a3FItbfEllENgVgBAAMCAAN3AAM6BA",
-                        "photo_vk": "photo-236264711_456239035",
+                        "photo": TG_UPLOADED_PHOTOS.get("131.jpg"),
+                        "photo_vk": VK_UPLOADED_PHOTOS.get("131.jpg"),
                         "text": "<blockquote>Модульная коляска с двумя сменными блоками. Люлька и сидячий блок</blockquote>",
                         "text_vk": "Модульная коляска с двумя сменными блоками. Люлька и сидячий блок",
                     },
@@ -184,8 +187,8 @@ QUIZ_CONFIG = {
                 "3in1": {
                     "button": "3 в 1",
                     "preview": {
-                        "photo": "AgACAgIAAyEGAATQjmD4AAM6aY3yBsAQRMni9fIZgshk4XlMLowAAjsaaxs1a3FI15_guEobOEQBAAMCAAN3AAM6BA",
-                        "photo_vk": "photo-236264711_456239036",
+                        "photo": TG_UPLOADED_PHOTOS.get("132.jpg"),
+                        "photo_vk": VK_UPLOADED_PHOTOS.get("132.jpg"),
                         "text": "<blockquote>Люлька, сидячий блок + автолюлька для перевозки новорожденного (до 3х "
                                 "месяцев) в автомобиле</blockquote>",
                         "text_vk": "Люлька, сидячий блок + автолюлька для перевозки новорожденного (до 3х "
@@ -196,8 +199,8 @@ QUIZ_CONFIG = {
                 "transformer": {
                     "button": "Трансформер",
                     "preview": {
-                        "photo": "AgACAgIAAyEGAATQjmD4AAM7aY3yCM61_230v20FHHjUFss5btEAAjwaaxs1a3FIGEbsM1aEMfYBAAMCAAN5AAM6BA",
-                        "photo_vk": "photo-236264711_456239037",
+                        "photo": TG_UPLOADED_PHOTOS.get("133.jpg"),
+                        "photo_vk": VK_UPLOADED_PHOTOS.get("133.jpg"),
                         "text": "<blockquote>Коляска у которой люлька по средствам регуляции тросиков или "
                                 "строп трансформируется в сидячий блок. Практичные, но менее комфортные "
                                 "коляски</blockquote>",
@@ -211,8 +214,8 @@ QUIZ_CONFIG = {
             "next_level": 5
         },
         5: {
-            "photo": "AgACAgIAAyEGAATQjmD4AAM8aY3yCbcJw4TSLtNk7lha0FH104wAAj4aaxs1a3FIzUbTJvbHot8BAAMCAAN5AAM6BA",
-            "photo_vk": "photo-236264711_456239038",
+            "photo": TG_UPLOADED_PHOTOS.get("140.jpg"),
+            "photo_vk": VK_UPLOADED_PHOTOS.get("140.jpg"),
             "text": "Тип дороги преимущественно по которому будете ездить\n\n"
                     "<blockquote>Очень важно определить тип дорог вашей местности. От этого зависит на сколько "
                     "удобным будет управление коляской и комфорт малыша</blockquote>",
@@ -223,8 +226,8 @@ QUIZ_CONFIG = {
                 "ground": {
                     "button": "Грунт",
                     "preview": {
-                        "photo": "AgACAgIAAyEGAATQjmD4AAM9aY3yCyUC59bnljC1S1vpwAvy53MAAkEaaxs1a3FIY7A1AWYv7yQBAAMCAAN5AAM6BA",
-                        "photo_vk": "photo-236264711_456239039",
+                        "photo": TG_UPLOADED_PHOTOS.get("141.jpg"),
+                        "photo_vk": VK_UPLOADED_PHOTOS.get("141.jpg"),
                         "text": "<blockquote>Детская коляска подходящая для передвижения по грунту. Большие колёса, "
                                 "крепкая рама - если живёте за городом</blockquote>",
                         "text_vk": "Детская коляска подходящая для передвижения по грунту. Большие колёса, "
@@ -235,8 +238,8 @@ QUIZ_CONFIG = {
                 "asphalt": {
                     "button": "Аcфальт",
                     "preview": {
-                        "photo": "AgACAgIAAyEGAATQjmD4AAM-aY3yDBM1D04AAZOF9_oQprto-mObAAJCGmsbNWtxSDm04SP1PpN-AQADAgADeQADOgQ",
-                        "photo_vk": "photo-236264711_456239040",
+                        "photo": TG_UPLOADED_PHOTOS.get("142.jpg"),
+                        "photo_vk": VK_UPLOADED_PHOTOS.get("142.jpg"),
                         "text": "<blockquote>Коляска может иметь маленькие колеса и минимальный размер (массу) "
                                 "шасси</blockquote>",
                         "text_vk": "Коляска может иметь маленькие колеса и минимальный размер (массу) шасси",
@@ -246,8 +249,8 @@ QUIZ_CONFIG = {
                 "combination": {
                     "button": "Комбинированный",
                     "preview": {
-                        "photo": "AgACAgIAAyEGAATQjmD4AAM_aY3yDegV0x2c-L0SYCScMgfmEKIAAkMaaxs1a3FIW4y95QyQ1ToBAAMCAAN4AAM6BA",
-                        "photo_vk": "photo-236264711_456239041",
+                        "photo": TG_UPLOADED_PHOTOS.get("143.jpg"),
+                        "photo_vk": VK_UPLOADED_PHOTOS.get("143.jpg"),
                         "text": "<blockquote>Детская коляска подходящая для передвижения по грунту, асфальту "
                                 "или плитке. Обладает средним размером колёс и неплохой системой амортизации</blockquote>",
                         "text_vk": "Детская коляска подходящая для передвижения по грунту, асфальту "
@@ -258,8 +261,8 @@ QUIZ_CONFIG = {
                 "offroad": {
                     "button": "Off-road",
                     "preview": {
-                        "photo": "AgACAgIAAyEGAATQjmD4AANAaY3yD3IUN11IpyPh923qCMxa_ygAAkQaaxs1a3FIqGXFwXqyI2ABAAMCAAN5AAM6BA",
-                        "photo_vk": "photo-236264711_456239042",
+                        "photo": TG_UPLOADED_PHOTOS.get("144.jpg"),
+                        "photo_vk": VK_UPLOADED_PHOTOS.get("144.jpg"),
                         "text": "<blockquote>Коляски-вездеходы способны преодолевать бездорожье. Для таких колясок "
                                 "характерны четыре одинаковых больших колеса и массивная рама. Они менее поворотливы "
                                 "и тяжелы. Но если нужно уходить от погони по снегу – это идеальный вариант. Выбор "
@@ -281,8 +284,8 @@ QUIZ_CONFIG = {
     # =========================
     "stroller_6_plus": {
         2: {
-            "photo": "AgACAgIAAyEGAATQjmD4AANCaY3yEgbebJDYRr4HPO0N6eGNnlIAAkcaaxs1a3FIt9-5i4Mr3V0BAAMCAAN3AAM6BA",
-            "photo_vk": "photo-236264711_456239043",
+            "photo": TG_UPLOADED_PHOTOS.get("210.jpg"),
+            "photo_vk": VK_UPLOADED_PHOTOS.get("210.jpg"),
             "text": "Сфера применения коляски\n\n"
                     "<blockquote>Выберите, для выполнения каких основных задач требуется коляска</blockquote>",
             "text_vk": "Сфера применения коляски\n\n"
@@ -291,8 +294,8 @@ QUIZ_CONFIG = {
                 "daily_walks": {
                     "button": "Для ежедневных прогулок",
                     "preview": {
-                        "photo": "AgACAgIAAyEGAATQjmD4AANXaY3zQDUc9Vp5VYK4wP2GiDoXd8YAAlAaaxs1a3FI-QdXgKw__xkBAAMCAAN5AAM6BA",
-                        "photo_vk": "photo-236264711_456239044",
+                        "photo": TG_UPLOADED_PHOTOS.get("211.jpg"),
+                        "photo_vk": VK_UPLOADED_PHOTOS.get("211.jpg"),
                         "text": "<blockquote>Детские коляски для ежедневных прогулок возле дома или в парке</blockquote>",
                         "text_vk": "Детские коляски для ежедневных прогулок возле дома или в парке",
                     },
@@ -301,8 +304,8 @@ QUIZ_CONFIG = {
                 "autolady": {
                     "button": "Я автоледи",
                     "preview": {
-                        "photo": "AgACAgIAAyEGAATQjmD4AANYaY3zRW_bh9wZ6YywwhDKosvnUDUAAlEaaxs1a3FI1VdEMYK3uOYBAAMCAAN5AAM6BA",
-                        "photo_vk": "photo-236264711_456239045",
+                        "photo": TG_UPLOADED_PHOTOS.get("212.png"),
+                        "photo_vk": VK_UPLOADED_PHOTOS.get("212.png"),
                         "text": "<blockquote>Коляски, которые более компактные, чтобы помещались в багажник автомобиля</blockquote>",
                         "text_vk": "Коляски, которые более компактные, чтобы помещались в багажник автомобиля",
                     },
@@ -311,8 +314,8 @@ QUIZ_CONFIG = {
                 "air_travel": {
                     "button": "Для путешествий",
                     "preview": {
-                        "photo": "AgACAgIAAyEGAATQjmD4AANZaY3zSaZHDn2H4fSpA_R3UEi__qYAAlMaaxs1a3FIeIZJhd0wy4IBAAMCAAN3AAM6BA",
-                        "photo_vk": "photo-236264711_456239046",
+                        "photo": TG_UPLOADED_PHOTOS.get("213.jpg"),
+                        "photo_vk": VK_UPLOADED_PHOTOS.get("213.jpg"),
                         "text": "<blockquote>Как правило, это самые минималистичные и компактные коляски. Некоторые "
                                 "модели разрешено проносить в качестве ручной клади на борт самолётов. Такие коляски "
                                 "не отличаются высокой проходимостью и предназначены исключительно для ровных "
@@ -329,8 +332,8 @@ QUIZ_CONFIG = {
             "next_level": 3
         },
         3: {
-            "photo": "AgACAgIAAyEGAATQjmD4AANaaY3zTa4Kce9brIdF5N-Js2BbHTIAAlQaaxs1a3FIwddwsaIS-TMBAAMCAAN4AAM6BA",
-            "photo_vk": "photo-236264711_456239047",
+            "photo": TG_UPLOADED_PHOTOS.get("220.jpg"),
+            "photo_vk": VK_UPLOADED_PHOTOS.get("220.jpg"),
             "text": "Тип ручки коляски\n\n"
                     "<blockquote>От типа ручки зависит тип складывания коляски и её функциональность</blockquote>",
             "text_vk": "Тип ручки коляски\n\n"
@@ -339,8 +342,8 @@ QUIZ_CONFIG = {
                 "koljaska-trost": {
                     "button": "Раздельная",
                     "preview": {
-                        "photo": "AgACAgIAAyEGAATQjmD4AANbaY3zUlXklRMJZWvqq4c90eWDPc4AAlUaaxs1a3FISkRBxSBhtvMBAAMCAAN3AAM6BA",
-                        "photo_vk": "photo-236264711_456239048",
+                        "photo": TG_UPLOADED_PHOTOS.get("221.jpg"),
+                        "photo_vk": VK_UPLOADED_PHOTOS.get("221.jpg"),
                         "text": "<blockquote>Коляски с таким типом ручек называются «коляски-трости». Зачастую имеют очень "
                                 "слабую проходимость и ограниченную функциональность. Тяжело вести коляску "
                                 "одной рукой</blockquote>",
@@ -353,8 +356,8 @@ QUIZ_CONFIG = {
                 "progylka": {
                     "button": "Цельная",
                     "preview": {
-                        "photo": "AgACAgIAAyEGAATQjmD4AANcaY3zVv78jHzQgfmwFrESMrVzedgAAlYaaxs1a3FIeZ_irTprIk0BAAMCAAN3AAM6BA",
-                        "photo_vk": "photo-236264711_456239049",
+                        "photo": TG_UPLOADED_PHOTOS.get("222.jpg"),
+                        "photo_vk": VK_UPLOADED_PHOTOS.get("22.jpg"),
                         "text": "<blockquote>Самый распространённый вид прогулочных колясок. Идеально подходит для ежедневного "
                                 "использования</blockquote>",
                         "text_vk": "Самый распространённый вид прогулочных колясок. Идеально подходит для ежедневного "
@@ -366,8 +369,8 @@ QUIZ_CONFIG = {
             "next_level": 4
         },
         4: {
-            "photo": "AgACAgIAAyEGAATQjmD4AANdaY3zW-AFGO21fC4d15csOVL3BHIAAlgaaxs1a3FIFjy4-hyYI_EBAAMCAAN4AAM6BA",
-            "photo_vk": "photo-236264711_456239050",
+            "photo": TG_UPLOADED_PHOTOS.get("230.jpg"),
+            "photo_vk": VK_UPLOADED_PHOTOS.get("230.jpg"),
             "text": "Тип дороги преимущественно по которому будете ездить\n\n"
                     "<blockquote>Очень важно определить тип дорог вашей местности. От этого зависит на сколько "
                     "удобным будет управление коляской и комфорт малыша</blockquote>",
@@ -378,8 +381,8 @@ QUIZ_CONFIG = {
                 "ground": {
                     "button": "Грунт",
                     "preview": {
-                        "photo": "AgACAgIAAyEGAATQjmD4AANeaY3zX3aNbYk_O2fDFymDYjzCIjcAAlkaaxs1a3FIuFyvImOT9eMBAAMCAAN4AAM6BA",
-                        "photo_vk": "photo-236264711_456239051",
+                        "photo": TG_UPLOADED_PHOTOS.get("231.jpg"),
+                        "photo_vk": VK_UPLOADED_PHOTOS.get("231.jpg"),
                         "text": "<blockquote>Детская коляска подходящая для передвижения по грунту. Большие колёса, "
                                 "крепкая рама - если живёте за городом</blockquote>",
                         "text_vk": "Детская коляска подходящая для передвижения по грунту. Большие колёса, "
@@ -390,8 +393,8 @@ QUIZ_CONFIG = {
                 "asphalt": {
                     "button": "Аcфальт",
                     "preview": {
-                        "photo": "AgACAgIAAyEGAATQjmD4AANfaY3zZNnapFS6i2A3ipIEo2TVN-QAAloaaxs1a3FIbim6PjmbSc4BAAMCAAN5AAM6BA",
-                        "photo_vk": "photo-236264711_456239052",
+                        "photo": TG_UPLOADED_PHOTOS.get("232.jpg"),
+                        "photo_vk": VK_UPLOADED_PHOTOS.get("232.jpg"),
                         "text": "<blockquote>Коляска может иметь маленькие колеса и минимальный размер (массу) "
                                 "шасси</blockquote>",
                         "text_vk": "Коляска может иметь маленькие колеса и минимальный размер (массу) шасси",
@@ -401,8 +404,8 @@ QUIZ_CONFIG = {
                 "combination": {
                     "button": "Комбинированный",
                     "preview": {
-                        "photo": "AgACAgIAAyEGAATQjmD4AANgaY3zaKxKAi9qVdvjIDlobeTxbJAAAlsaaxs1a3FIz7rliU9t_kgBAAMCAAN3AAM6BA",
-                        "photo_vk": "photo-236264711_456239053",
+                        "photo": TG_UPLOADED_PHOTOS.get("233.jpg"),
+                        "photo_vk": VK_UPLOADED_PHOTOS.get("233.jpg"),
                         "text": "<blockquote>Детская коляска подходящая для передвижения по грунту, асфальту "
                                 "или плитке. Обладает средним размером колёс и неплохой системой амортизации</blockquote>",
                         "text_vk": "Детская коляска подходящая для передвижения по грунту, асфальту "
@@ -413,8 +416,8 @@ QUIZ_CONFIG = {
                 "offroad": {
                     "button": "Off-road",
                     "preview": {
-                        "photo": "AgACAgIAAyEGAATQjmD4AANhaY3zbYUqjJdARhS5n24dffj45tgAAlwaaxs1a3FI8pklH_0CD1cBAAMCAAN3AAM6BA",
-                        "photo_vk": "photo-236264711_456239054",
+                        "photo": TG_UPLOADED_PHOTOS.get("234.jpg"),
+                        "photo_vk": VK_UPLOADED_PHOTOS.get("234.jpg"),
                         "text": "<blockquote>Коляски-вездеходы способны преодолевать бездорожье. Для таких колясок "
                                 "характерны большие колеса и массивная рама. Они менее компактны в сложенном состоянии "
                                 "и достаточно тяжелы. Но если нужно уходить от погони по снегу – это идеальный вариант. "
@@ -436,8 +439,8 @@ QUIZ_CONFIG = {
     # =========================
     "service_only": {
         2: {
-            "photo": "AgACAgIAAyEGAATQjmD4AANjaY3zdho5oBpYaP3tIWb1JIn5cZoAAl4aaxs1a3FI6b9kzsHXQSYBAAMCAAN5AAM6BA",
-            "photo_vk": "photo-236264711_456239055",
+            "photo": TG_UPLOADED_PHOTOS.get("310.jpg"),
+            "photo_vk": VK_UPLOADED_PHOTOS.get("310.jpg"),
             "text": "Укажите пожалуйста тип вашей коляски\n\n"
                     "<blockquote>В зависимости от типа коляски может отличаться время и частота обслуживания, а "
                     "также некоторые рекомендации по эксплуатации</blockquote>",
@@ -448,8 +451,8 @@ QUIZ_CONFIG = {
                 "pregnant": {
                     "button": "Коляска от рождения 0+",
                     "preview": {
-                        "photo": "AgACAgIAAyEGAATQjmD4AANkaY3zemJziqBH28hD4L4tLMT9x_wAAmAaaxs1a3FIYBBWA7e3Yx0BAAMCAAN5AAM6BA",
-                        "photo_vk": "photo-236264711_456239056",
+                        "photo": TG_UPLOADED_PHOTOS.get("311.jpg"),
+                        "photo_vk": VK_UPLOADED_PHOTOS.get("311.jpg"),
                         "text": "<blockquote>Коляски с люлькой + прогулочный блок и автолюлька (в зависимости от "
                                 "комплектации)</blockquote>",
                         "text_vk": "Коляски с люлькой + прогулочный блок и автолюлька (в зависимости от "
@@ -460,8 +463,8 @@ QUIZ_CONFIG = {
                 "stroller_6_plus": {
                     "button": "Прогулочная коляска 6+",
                     "preview": {
-                        "photo": "AgACAgIAAyEGAATQjmD4AANlaY3zf9S_f1ESGC8pG4-gXulPUboAAmEaaxs1a3FIV2yfDE4QZ2UBAAMCAAN4AAM6BA",
-                        "photo_vk": "photo-236264711_456239057",
+                        "photo": TG_UPLOADED_PHOTOS.get("312.jpg"),
+                        "photo_vk": VK_UPLOADED_PHOTOS.get("312.jpg"),
                         "text": "<blockquote>Коляска для малышей которые уже умеют сидеть</blockquote>",
                         "text_vk": "Коляска для малышей которые уже умеют сидеть",
                     },

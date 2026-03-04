@@ -1,11 +1,15 @@
-﻿from aiogram import Router, F, Bot
+﻿import os
+from aiogram.types import FSInputFile
+from aiogram import Router, F, Bot
 from aiogram.types import CallbackQuery, Message
 from aiogram.filters import Command
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.db.models import User
 from app.core.db.crud import get_or_create_user
+from app.core.quiz.photo_ids import TG_UPLOADED_PHOTOS
 from app.platforms.telegram.keyboards import kb_activation
+from app.core.quiz.config_quiz import QUIZ_CONFIG
 from app.core.quiz.renderer import render_quiz_step, resolve_media, build_keyboard
 from app.core.quiz.quiz_state_service import (
     get_or_create_quiz_profile,
@@ -184,20 +188,47 @@ async def quiz_next(
         profile.completed_once = True
         session.add(profile)
         await session.commit()
-        await bot.send_animation(
-            chat_id=call.message.chat.id,
-            animation="CgACAgQAAxkBAAIxe2liVpUmUuaoAAEWiAq4dZsc4CTygQACBAMAAvYbHVNpZ9ehQ-1QTjgE",
-            caption=(
-                "✅ <b>Отлично! Квиз-опрос завершён</b>\n\n"
-                "Теперь у меня есть некоторое понимание ситуации. Данные из Ваших ответов помогут мне выдавать советы и "
-                "подбирать модели именно под ваши условия — будь то поиск новой коляски или малоизвестные нюансы ухода "
-                "за той, что уже стоит у Вас дома"
-                "<blockquote>Если захотите что-то изменить в ответах, это всегда можно сделать тут:\n"
-                "<b>[Меню] >> [👤 Мой профиль]</b></blockquote>\n\n"
-                "<b>Остался последний шаг - открыть доступ к подбору, советам и рекомендациям</b>"
-            ),
-            reply_markup=kb_activation,
-        )
+        # Пытаемся отправить гифку
+        try:
+            # Сначала пробуем отправить по ID (если он валидный)
+            await bot.send_animation(
+                chat_id=call.message.chat.id,
+                animation=TG_UPLOADED_PHOTOS.get("gif_finish"),
+                caption=(
+                    "✅ <b>Отлично! Квиз-опрос завершён</b>\n\n"
+                    "Теперь у меня есть некоторое понимание ситуации. Данные из Ваших ответов помогут мне выдавать советы и "
+                    "подбирать модели именно под ваши условия — будь то поиск новой коляски или малоизвестные нюансы ухода "
+                    "за той, что уже стоит у Вас дома"
+                    "<blockquote>Если захотите что-то изменить в ответах, это всегда можно сделать тут:\n"
+                    "<b>[Меню] >> [👤 Мой профиль]</b></blockquote>\n\n"
+                    "<b>Остался последний шаг - открыть доступ к подбору, советам и рекомендациям</b>"
+                ),
+                reply_markup=kb_activation,
+            )
+        except Exception as e:
+            #ЕСЛИ ID СТАРЫЙ ИЛИ НЕ РАБОТАЕТ — ЖЕЛЕЗОБЕТОННЫЙ ВАРИАНТ С ДИСКА
+            # Высчитываем путь до корня проекта (PROkolyaski)
+            CURRENT_FILE = os.path.abspath(__file__)
+            ROOT_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(CURRENT_FILE))))
+
+            GIF_PATH = os.path.join(ROOT_DIR, "mediafile_for_bot", "gif_finish.gif")
+
+            gif_file = FSInputFile(GIF_PATH)
+
+            await bot.send_animation(
+                chat_id=call.message.chat.id,
+                animation=gif_file,
+                caption=(
+                    "✅ <b>Отлично! Квиз-опрос завершён</b>\n\n"
+                    "Теперь у меня есть некоторое понимание ситуации. Данные из Ваших ответов помогут мне выдавать советы и "
+                    "подбирать модели именно под ваши условия — будь то поиск новой коляски или малоизвестные нюансы ухода "
+                    "за той, что уже стоит у Вас дома"
+                    "<blockquote>Если захотите что-то изменить в ответах, это всегда можно сделать тут:\n"
+                    "<b>[Меню] >> [👤 Мой профиль]</b></blockquote>\n\n"
+                    "<b>Остался последний шаг - открыть доступ к подбору, советам и рекомендациям</b>"
+                ),
+                reply_markup=kb_activation,
+            )
         return
 
     # иначе — обычный переход

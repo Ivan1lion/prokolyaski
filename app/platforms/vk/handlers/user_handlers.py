@@ -46,6 +46,7 @@ from app.core.quiz.quiz_state_service import (
     go_back,
 )
 from app.core.quiz.config_quiz import QUIZ_CONFIG
+from app.core.quiz.photo_ids import VK_UPLOADED_PHOTOS
 
 import app.platforms.vk.keyboards as vk_kb
 
@@ -431,7 +432,7 @@ async def _handle_activation(vk_id, peer_id, vk_api):
         "(В пакет также включены 50 бесплатных запросов к AI-консультанту)"
         "\n\n🎫 Есть флаер от магазина-партнера? — нажмите «Ввести код активации» для свободного "
         "доступа к моим личным видеорекомендациям и реальным советам: как выбрать и не сломать коляску",
-        attachment="photo-236264711_456239065",
+        attachment=VK_UPLOADED_PHOTOS.get("for_pay.jpg"),
         keyboard=vk_kb.activation_kb(),
     )
 
@@ -857,7 +858,7 @@ async def _handle_promo(vk_id, peer_id, session, vk_api):
         await _send(vk_api, peer_id, "Срок действия вашего промокода истек")
         return
 
-    bot_link = "https://t.me/babykea_bot"
+    bot_link = "https://t.me/prokolyaski_bot"
     if mag_promo == "[BABYKEA_PREMIUM]":
         share_promo = "BKEA-4K7X"
         text = (f"👑 У вас PREMIUM-доступ!\n\n"
@@ -1119,7 +1120,7 @@ async def _handle_quiz_next(vk_id, peer_id, session, vk_api, cmid=None, event_id
             "Если захотите что-то изменить в ответах, это всегда можно сделать тут:\n"
             "[📋 Меню] >> [👤 Мой профиль]\n\n"
             "Остался последний шаг - открыть доступ к подбору, советам и рекомендациям",
-            attachment="doc-236264711_695840469",
+            attachment=VK_UPLOADED_PHOTOS.get("gif_finish"),
             keyboard=vk_kb.kb_activation(),
         )
         return

@@ -53,7 +53,7 @@ async def dispatch_post(context: PostingContext, message: Message, bot: Bot) -> 
 
     # 1. Проверяем ХЭШТЕГ (для принудительного репоста)
     # (content_text мы уже получили выше, используем его)
-    has_hashtag = "#babykea" in content_text.lower()
+    has_hashtag = "#prokolyaski" in content_text.lower()
 
     # 2. Проверяем ОПРОС (Poll)
     is_poll = message.poll is not None
