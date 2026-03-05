@@ -17,13 +17,13 @@ async def dispatch_post(context: PostingContext, message: Message, bot: Bot) -> 
         await cache_media_from_post(message)
         return
 
-    # --- 🚫 ФИЛЬТР: LIFESTYLE / NOBOT (ИГНОР) ---
+    # --- 🚫 ФИЛЬТР: LIFESTYLE / PRO (ИГНОР) ---
     # 1. Сначала извлекаем текст
     content_text = message.text or message.caption or ""
     # 2. Переводим текст в нижний регистр один раз (для удобства)
     text_lower = content_text.lower()
-    # 3. Проверяем: если есть "#lifestyle" ИЛИ "#nobot" — выходим
-    if "#lifestyle" in text_lower or "#nobot" in text_lower:
+    # 3. Проверяем: если есть "#lifestyle" ИЛИ "#pro" — выходим
+    if "#lifestyle" in text_lower or "#pro" in text_lower:
         return  # <--- Ключевой момент: Бот просто выходит из функции здесь
 
     # --- 🚫 ФИЛЬТР: ВИДЕО-КРУЖКИ (НЕ РАССЫЛАТЬ) ---

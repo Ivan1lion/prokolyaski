@@ -38,9 +38,9 @@ async def handle_wall_post_new(post: dict, vk_api: API, session_maker):
     owner_id = post.get("owner_id") or post.get("from_id")
     post_id = post.get("id")
 
-    # Фильтрация: пропускаем посты с #nobot
-    if "#nobot" in post_text.lower():
-        logger.info(f"VK post {post_id}: skipped (#nobot)")
+    # Фильтрация: пропускаем посты с #pro
+    if "#pro" in post_text.lower():
+        logger.info(f"VK post {post_id}: skipped (#pro)")
         return
 
     # Собираем строки вложений для VK API
