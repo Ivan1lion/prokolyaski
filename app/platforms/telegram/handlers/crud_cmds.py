@@ -223,9 +223,10 @@ async def contacts_cmd(message: Message, session: AsyncSession):
         f"<blockquote>{magazine.name}</blockquote>\n",
         f"📍 Город: {magazine.city}",
         f"🏠 Адрес: {magazine.address}",
-        f"🌐 Сайт: <a href='{magazine.url_website}'>{magazine.name_website}</a>",
     ]
 
+    if magazine.url_website:
+        parts.append(f"🌐 Сайт: <a href='{magazine.url_website}'>{magazine.name_website}</a>")
     if magazine.username_magazine:
         text_parts.append(f"💬 Telegram: {magazine.username_magazine}")
 

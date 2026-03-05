@@ -14,7 +14,8 @@ logger = logging.getLogger(__name__)
 
 # Настройки рассылки (через сколько дней слать и ID сообщений в тех-канале)
 tech_channel_id = int(os.getenv("TECH_CHANNEL_ID"))
-VK_SERVICE_VIDEO = os.getenv("VK_SERVICE_VIDEO")
+VK_SERVICE_VIDEO_1 = os.getenv("VK_SERVICE_VIDEO_1")
+VK_SERVICE_VIDEO_2 = os.getenv("VK_SERVICE_VIDEO_2")
 
 # SERVICE_STAGES = {
 #     0: {"days": 3, "msg_id": 105},  # 0 уровень -> ждет 3 дня -> шлем msg_id 101 -> переход на ур. 1
@@ -97,7 +98,7 @@ async def _service_notifications_loop(bot, session_maker, vk_api=None):
                                     await vk_api.messages.send(
                                         user_id=user.vk_id,
                                         message="\u200b",
-                                        attachment=VK_SERVICE_VIDEO,
+                                        attachment=VK_SERVICE_VIDEO_1,
                                         keyboard=feedback_kb,
                                         random_id=0,
                                     )
@@ -105,7 +106,7 @@ async def _service_notifications_loop(bot, session_maker, vk_api=None):
                                     await vk_api.messages.send(
                                         user_id=user.vk_id,
                                         message="🛠 Пришло время планового обслуживания вашей коляски!",
-                                        attachment=VK_SERVICE_VIDEO,
+                                        attachment=VK_SERVICE_VIDEO_2,
                                         random_id=0,
                                     )
 

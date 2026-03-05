@@ -797,10 +797,11 @@ async def _handle_contacts(vk_id, peer_id, session, vk_api):
 
     parts = [f"{magazine.name}\n",
              f"📍 Город: {magazine.city}",
-             f"🏠 Адрес: {magazine.address}",
-             f"🌐 Сайт: {magazine.url_website}"]
-    if magazine.username_magazine:
-        parts.append(f"💬 Telegram: {magazine.username_magazine}")
+             f"🏠 Адрес: {magazine.address}"]
+    if magazine.url_website:
+        parts.append(f"🌐 Сайт: {magazine.url_website}")
+    if magazine.vk_magazine:
+        parts.append(f"💬 ВКонтакте: {magazine.vk_magazine}")
 
     text = "\n".join(parts)
     kb = vk_kb.magazine_map_kb(magazine.map_url) if magazine.map_url else None

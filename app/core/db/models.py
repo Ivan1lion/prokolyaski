@@ -36,6 +36,7 @@ class Magazine(Base):
     photo: Mapped[str] = mapped_column(String(500), nullable=True)
     map_url: Mapped[str] = mapped_column(String(500), nullable=True)
     username_magazine: Mapped[str] = mapped_column(String(150), nullable=True)
+    vk_magazine: Mapped[str] = mapped_column(String(150), nullable=True)
 
 
 
