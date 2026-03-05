@@ -97,10 +97,10 @@ def ai_mode_with_balance_kb() -> str:
 
 def pay_kb() -> str:
     kb = Keyboard(inline=True)
-    kb.add(Callback("1 запрос — 29₽", payload={"cmd": "pay29"}))
-    kb.add(Callback("50 запросов — 950₽", payload={"cmd": "pay950"}))
+    kb.add(Callback("29₽ — 1 запрос", payload={"cmd": "pay29"}))
+    kb.add(Callback("950₽ — 50 запросов", payload={"cmd": "pay950"}))
     kb.row()
-    kb.add(Callback("10 запросов — 190₽", payload={"cmd": "pay190"}))
+    kb.add(Callback("190₽ — 10 запросов", payload={"cmd": "pay190"}))
     return kb.get_json()
 
 

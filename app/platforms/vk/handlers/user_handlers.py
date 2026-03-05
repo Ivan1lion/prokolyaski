@@ -64,6 +64,7 @@ VK_GUIDE_POST = os.getenv("VK_GUIDE_POST")
 VK_MANUAL_POST = os.getenv("VK_MANUAL_POST")
 VK_RULES_POST = os.getenv("VK_RULES_POST")
 VK_AI_VIDEO = os.getenv("VK_AI_VIDEO", "")
+VK_STATYA_PAY = os.getenv("VK_STATYA_PAY")
 
 
 # ID магазинов для ПЛАТНЫХ пользователей (тот же список что в TG)
@@ -577,9 +578,14 @@ async def _handle_ai_message(text, vk_id, peer_id, user, session, vk_api, ai_mod
     if not reserved:
         await _send(
             vk_api, peer_id,
-            "💡 Чтобы я мог выдать точный результат, выберите пакет запросов:",
+            "💡 Чтобы я мог выдать точный результат и завершить персональный анализ под ваши условия, выберите "
+            "пакет запросов ниже"
+            "\n\nВ прикрепленной статье подробно рассказываю, как работает AI-консультант и что считается запросом 👇"
+            "\nhttps://vk.com/@prokolyaski_bot-chtoby-otvety-byli-tochnymi-i-poleznymi-bot-rabotaet-na-prof?anchor=&ref=im",
+            attachment=VK_STATYA_PAY,
             keyboard=vk_kb.pay_kb(),
         )
+
         return
 
     is_catalog = (ai_mode == "catalog")
