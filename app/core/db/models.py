@@ -26,6 +26,7 @@ class Magazine(Base):
         index=True,
         nullable=False
     )
+    vk_hashtag: Mapped[str | None] = mapped_column(String(50), nullable=True)
     is_promo_active: Mapped[bool] = mapped_column(default=True, server_default="true")
     feed_url = Column(String, nullable=True)  # Ссылка на YML файл (может быть пустой - тогда ответы только из поиска)/ Если поставить "PREMIUM_AGGREGATOR", то идет поиск по всем фидам из векторной БД
     name: Mapped[str] = mapped_column(String(150), nullable=True)

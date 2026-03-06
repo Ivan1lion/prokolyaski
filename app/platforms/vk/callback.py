@@ -1,95 +1,110 @@
 """
 Обработчик Callback API от VK.
 
-VK шлёт POST на /vk/callback с JSON:
-  {"type": "confirmation", "group_id": 123}        → отвечаем строкой подтверждения
-  {"type": "message_new", "object": {...}, ...}     → обрабатываем сообщение
-  {"type": "message_event", "object": {...}, ...}   → обрабатываем нажатие кнопки
-
-Маршрут регистрируется в run_vk.py через aiohttp.
+Обслуживает три группы:
+  1. Группа бота (VK_GROUP_ID) — message_new, message_event
+  2. Блог мастера (VK_MY_CHANNEL_ID) — wall_post_new → всем юзерам
+  3. Магазины (VK_MAG_ID) — wall_post_new → по хэштегу #mag1, #mag2...
 """
 
+import os
 import json
 import logging
+import asyncio
 from aiohttp import web
-
-from app.platforms.vk.bot import VK_SECRET, VK_CONFIRMATION_CODE, VK_GROUP_ID
 
 logger = logging.getLogger(__name__)
 
+# Загружаем конфиг всех групп
+BOT_GROUP_ID = int(os.getenv("VK_GROUP_ID", 0))
+AUTHOR_GROUP_ID = int(os.getenv("VK_MY_CHANNEL_ID", 0))
+MAG_GROUP_ID = int(os.getenv("VK_MAG_ID", 0))
+
+# Словарь: group_id → (secret, confirmation_code)
+GROUP_CONFIG = {
+    BOT_GROUP_ID: (
+        os.getenv("VK_SECRET", ""),
+        os.getenv("VK_CONFIRMATION_CODE", ""),
+    ),
+    AUTHOR_GROUP_ID: (
+        os.getenv("VK_SECRET_MY_CHANNEL", ""),
+        os.getenv("VK_MY_CHANNEL_CONFIRMATION_CODE", ""),
+    ),
+    MAG_GROUP_ID: (
+        os.getenv("VK_SECRET_MAG", ""),
+        os.getenv("VK_MAG_CONFIRMATION_CODE", ""),
+    ),
+}
+
 
 async def vk_callback_handler(request: web.Request) -> web.Response:
-    """
-    Единая точка входа для всех событий VK Callback API.
-
-    VK требует:
-      - Ответить "ok" на каждое событие (иначе будет повторять)
-      - На "confirmation" — ответить строкой подтверждения
-      - Проверить secret если задан
-    """
+    """Единая точка входа для всех событий VK Callback API."""
     try:
         data = await request.json()
     except Exception:
         return web.Response(text="bad json", status=400)
 
     event_type = data.get("type")
-    group_id = data.get("group_id")
+    group_id = int(data.get("group_id", 0))
 
-    # Проверка group_id
-    if group_id and int(group_id) != VK_GROUP_ID:
-        return web.Response(text="wrong group", status=403)
+    # Проверяем что группа нам известна
+    config = GROUP_CONFIG.get(group_id)
+    if not config:
+        logger.warning(f"VK callback: unknown group_id={group_id}")
+        return web.Response(text="unknown group", status=403)
+
+    secret, confirmation_code = config
 
     # Проверка секретного ключа
-    if VK_SECRET:
-        if data.get("secret") != VK_SECRET:
-            logger.warning(f"VK callback: wrong secret from {request.remote}")
-            return web.Response(text="forbidden", status=403)
+    if secret and data.get("secret") != secret:
+        logger.warning(f"VK callback: wrong secret for group {group_id}")
+        return web.Response(text="forbidden", status=403)
 
-    # === CONFIRMATION (подтверждение сервера) ===
+    # === CONFIRMATION ===
     if event_type == "confirmation":
-        return web.Response(text=VK_CONFIRMATION_CODE)
+        return web.Response(text=confirmation_code)
 
-    # === MESSAGE_NEW (новое сообщение от юзера) ===
-    if event_type == "message_new":
-        from app.platforms.vk.handlers.user_handlers import handle_message_new
-        obj = data.get("object", {}).get("message", {})
-        if obj:
-            # Запускаем обработку асинхронно, чтобы не задерживать ответ VK
-            import asyncio
-            vk_api = request.app.get("vk_api")
-            session_maker = request.app.get("session_maker")
-            asyncio.create_task(
-                _safe_handle(handle_message_new, obj, vk_api, session_maker)
-            )
-        return web.Response(text="ok")
+    # === События группы БОТА (message_new, message_event) ===
+    if group_id == BOT_GROUP_ID:
 
-    # === MESSAGE_EVENT (нажатие inline-кнопки с callback) ===
-    if event_type == "message_event":
-        from app.platforms.vk.handlers.user_handlers import handle_message_event
+        if event_type == "message_new":
+            from app.platforms.vk.handlers.user_handlers import handle_message_new
+            obj = data.get("object", {}).get("message", {})
+            if obj:
+                vk_api = request.app.get("vk_api")
+                sm = request.app.get("session_maker")
+                asyncio.create_task(_safe_handle(handle_message_new, obj, vk_api, sm))
+            return web.Response(text="ok")
+
+        if event_type == "message_event":
+            from app.platforms.vk.handlers.user_handlers import handle_message_event
+            obj = data.get("object", {})
+            if obj:
+                vk_api = request.app.get("vk_api")
+                sm = request.app.get("session_maker")
+                asyncio.create_task(_safe_handle(handle_message_event, obj, vk_api, sm))
+            return web.Response(text="ok")
+
+    # === WALL_POST_NEW — Блог мастера → всем юзерам VK-бота ===
+    if event_type == "wall_post_new" and group_id == AUTHOR_GROUP_ID:
+        from app.platforms.vk.posting.vk_broadcaster import handle_author_post
         obj = data.get("object", {})
         if obj:
-            import asyncio
             vk_api = request.app.get("vk_api")
-            session_maker = request.app.get("session_maker")
-            asyncio.create_task(
-                _safe_handle(handle_message_event, obj, vk_api, session_maker)
-            )
+            sm = request.app.get("session_maker")
+            asyncio.create_task(_safe_handle(handle_author_post, obj, vk_api, sm))
         return web.Response(text="ok")
 
-    # === WALL_POST_NEW (новый пост в группе — для рассылки) ===
-    if event_type == "wall_post_new":
-        from app.platforms.vk.posting.vk_broadcaster import handle_wall_post_new
+    # === WALL_POST_NEW — Магазины → по хэштегу ===
+    if event_type == "wall_post_new" and group_id == MAG_GROUP_ID:
+        from app.platforms.vk.posting.vk_broadcaster import handle_magazine_post
         obj = data.get("object", {})
         if obj:
-            import asyncio
             vk_api = request.app.get("vk_api")
-            session_maker = request.app.get("session_maker")
-            asyncio.create_task(
-                _safe_handle(handle_wall_post_new, obj, vk_api, session_maker)
-            )
+            sm = request.app.get("session_maker")
+            asyncio.create_task(_safe_handle(handle_magazine_post, obj, vk_api, sm))
         return web.Response(text="ok")
 
-    # Все остальные события — просто "ok"
     return web.Response(text="ok")
 
 
